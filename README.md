@@ -29,6 +29,7 @@ It uses [`toggleterm.nvim`](https://github.com/akinsho/toggleterm.nvim) as backe
 {
   cache_file = vim.fn.stdpath("cache") .. "/commands", -- path to cache file
   sort = 'asc' -- Can be "asc", "desc" or "none"
+}
 ```
 
 ## ⚡ Commands
