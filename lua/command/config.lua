@@ -1,9 +1,11 @@
 local M = {
-  ---@class Config
-  ---@field cache_file string
-  config = {
-    cache_file = vim.fn.stdpath("cache") .. "/commands",
-  }
+	---@class Config
+	---@field cache_file string
+	---@field sort "asc"|"desc"|"none"
+	config = {
+		cache_file = vim.fn.stdpath("cache") .. "/commands",
+		sort = "asc"
+	}
 }
 
 ---Bootstrap configuration

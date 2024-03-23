@@ -11,7 +11,7 @@ local M = {
 
 -- Function to read a file and return lines as an array
 local read_file_lines = function(filename)
-  filename = filename or cfg.config.cache_file
+	filename = filename or cfg.config.cache_file
 	local file = io.open(filename or cfg.config.cache_file)
 	if file then
 		local lines = {}
@@ -32,7 +32,15 @@ function M.select_command()
 		vim.notify("No commands found in cache file", vim.log.levels.WARN)
 		M.prompt_command()
 	else
-		table.sort(cmds)
+		if cfg.config.sort ~= "none" then
+			table.sort(cmds, function(a, b)
+				if cfg.config.sort == "asc" then
+					return a:sub(1, 1) < b:sub(1, 1)
+				else
+					return a:sub(1, 1) > b:sub(1, 1)
+				end
+			end)
+		end
 		vim.ui.select(cmds, { prompt = "List of available commands: " }, function(cmd)
 			if cmd ~= nil then
 				M.exec(cmd)
