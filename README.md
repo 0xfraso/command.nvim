@@ -4,6 +4,8 @@ Easily select and launch commands directly from neovim
 
 It uses [`toggleterm.nvim`](https://github.com/akinsho/toggleterm.nvim) as backend
 
+![image](https://github.com/0xfraso/command.nvim/assets/116293603/2d8cc2c5-585e-41ca-b65d-16549bfb44c6)
+
 ## 📦 Installation
 
 ### Lazy (recommended)
