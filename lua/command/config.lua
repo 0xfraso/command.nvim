@@ -4,8 +4,9 @@ local M = {
 	---@field sort "asc"|"desc"|"none"
 	config = {
 		cache_file = vim.fn.stdpath("cache") .. "/commands",
+		shell_file = os.getenv('HOME') .. "/.zsh_history",
 		sort = "asc"
-	}
+	},
 }
 
 ---Bootstrap configuration

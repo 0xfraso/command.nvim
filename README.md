@@ -38,6 +38,7 @@ It uses [`toggleterm.nvim`](https://github.com/akinsho/toggleterm.nvim) as backe
 
 ```
 :CommandSelect
+:CommandSelectShellHistory
 :CommandExecLast
 :CommandPrompt
 :CommandPromptLast
@@ -51,17 +52,20 @@ For example, you can map commands using `lazy.nvim`:
   "0xfraso/command.nvim",
   opts = {
     cache_file = vim.fn.stdpath("cache") .. "/commands", -- path to cache file
+    shell_file = os.getenv('HOME') .. "/.zsh_history",   -- change with your shell history file
+    sort = "asc"
   },
   dependencies = {
     "akinsho/toggleterm.nvim",
     "stevearc/dressing.nvim", -- optional, but recommended
   },
   keys = {
-    { "<leader>tl", ":CommandSelect<CR>",     desc = "Select command" },
-    { "<leader>tp", ":CommandPrompt<CR>",     desc = "Prompt command" },
-    { "<leader>tP", ":CommandPromptLast<CR>", desc = "Prompt last command" },
-    { "<leader>tc", ":CommandExecLast<CR>",   desc = "Exec last command" },
-    { "<leader>te", ":CommandEdit<CR>",       desc = "Edit commands file" },
+    { "<leader>tl", ":CommandSelect<CR>",             desc = "Select command" },
+    { "<leader>tr", ":CommandSelectShellHistory<CR>", desc = "Select command from history file" },
+    { "<leader>tp", ":CommandPrompt<CR>",             desc = "Prompt command" },
+    { "<leader>tP", ":CommandPromptLast<CR>",         desc = "Prompt last command" },
+    { "<leader>tc", ":CommandExecLast<CR>",           desc = "Exec last command" },
+    { "<leader>te", ":CommandEdit<CR>",               desc = "Edit commands file" },
   }
 }
 ```

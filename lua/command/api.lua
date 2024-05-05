@@ -98,9 +98,31 @@ function M.open_cache_file()
 	vim.cmd("e " .. cfg.config.cache_file)
 end
 
---- Opens cache file
+--- Edit cache file
 function M.edit_last_command()
 	M.prompt_command(M.last_command)
+end
+
+--- Select command from shell history
+function M.open_shell_history()
+	-- local lines = read_file_lines(vim.fn.cfg.config.shell_file) or {}
+	local lines = read_file_lines(cfg.config.shell_file) or {}
+	local cmds = {}
+	for _, line in ipairs(lines) do
+		local cmd = string.gsub(line, "^:.*;", "")
+		table.insert(cmds, 1, cmd)
+	end
+
+	if #cmds == 1 and cmds[1] == nil then
+		vim.notify("No commands found in file", vim.log.levels.WARN)
+		M.prompt_command()
+	else
+		vim.ui.select(cmds, { prompt = "List of available commands: " }, function(cmd)
+			if cmd ~= nil then
+				M.exec(cmd)
+			end
+		end)
+	end
 end
 
 return M
